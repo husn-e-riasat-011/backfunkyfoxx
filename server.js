@@ -36,6 +36,10 @@ app.use("/api/v1", profitRoute);
 app.use("/api/v1", rentalRoute);
 app.use("/api/v1", vehicleRoute);
 
+app.get("/", (req, res) => {
+  res.send("Hello from the server!");
+});
+
 app.listen(port, () => {
   console.log(`Server is listening on Port ${port}`);
 });
