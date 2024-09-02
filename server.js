@@ -20,7 +20,13 @@ const rentalRoute = require("./routes/rentalRoute");
 const vehicleRoute = require("./routes/VehicleRoute");
 connectDB();
 app.use(express.json({ limit: "50mb" }));
-app.use(cors());
+app.use(
+  cors({
+    origin: `${process.env.FRNT_URL}`, // Corrected: Removed the curly braces
+    credentials: true,
+  })
+);
+
 app.use("/api/v1", accidentRoute);
 app.use("/api/v1", adminRoute);
 app.use("/api/v1", comaplainRoute);
