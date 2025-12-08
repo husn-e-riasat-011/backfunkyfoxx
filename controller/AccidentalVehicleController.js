@@ -9,16 +9,10 @@ exports.createAccidentVehicle = async (req, res) => {
     const { AccidentLocation, DamageInfo, Expense, numberPlate, Email } =
       req.body;
     const existVehicle = await VehicleModel.findOne({ numberPlate });
-    if (!existVehicle) {
-      return res.status(404).json({
-        message: "vehicle not found",
-      });
-    }
     const driver = await driverModel.findOne({ Email });
-    // console.log(driver);
-    if (!driver) {
+    if (!existVehicle && !driver) {
       return res.status(404).json({
-        message: "driver not found",
+        message: "numberplate or driver mail are not  correct",
       });
     }
 
@@ -70,6 +64,7 @@ exports.getAllAccidentVehicle = async (req, res) => {
     res.status(200).json({
       status: "Success",
       message: "All Accidental Vehicle",
+      vehicle,
     });
   } catch (error) {
     res.status(500).json({

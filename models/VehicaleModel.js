@@ -26,7 +26,6 @@ const vehicleSchema = new mongoose.Schema(
     },
     fuelType: {
       type: String,
-
       description: "Type of fuel used by the vehicle",
     },
     doors: {
